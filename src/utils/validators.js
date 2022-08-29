@@ -1,4 +1,6 @@
 export const validateEmail = (string) => {
-  const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const emailRegex = new RegExp(
+    "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ ]|(\\[ -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[ -Z^-~]*])"
+  );
   return emailRegex.test(string);
 };
