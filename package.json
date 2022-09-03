@@ -1,0 +1,41 @@
+{
+  "name": "btc-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "lint": "eslint --no-error-on-unmatched-pattern --ext .jsx --ext .js --ext .ts . --ignore-path .gitignore && prettier --no-error-on-unmatched-pattern --ignore-path .gitignore -c \"**/*.js\" \"**/*.ts\" \"**/*.json\" \"**/*.md\" \"**/*.yml\"",
+    "lint-fix": "eslint --no-error-on-unmatched-pattern --ext .jsx --ext .js --ext .ts . --ignore-path .gitignore --fix && prettier --no-error-on-unmatched-pattern --ignore-path .gitignore --write \"**/*.js\" \"**/*.ts\" \"**/*.json\" \"**/*.md\" \"**/*.yml\"",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GluterusMaximus/btc-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GluterusMaximus/btc-api/issues"
+  },
+  "homepage": "https://github.com/GluterusMaximus/btc-api#readme",
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-metarhia": "^8.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-sonarjs": "^0.14.0",
+    "husky": "^8.0.1",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.7.7",
+    "undici": "^5.8.0"
+  }
+}
