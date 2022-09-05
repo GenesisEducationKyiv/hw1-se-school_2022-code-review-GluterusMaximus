@@ -3,5 +3,6 @@
   "testEnvironment": "jest-environment-node",
   "transform": {},
   "coverageDirectory": "coverage",
-  "collectCoverage": true
+  "collectCoverage": true,
+  "setupFilesAfterEnv": ["jest-chain"]
 }
