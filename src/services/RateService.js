@@ -1,4 +1,4 @@
-import { request } from 'undici';
+import undici from 'undici';
 import {
   DEFAULT_FROM_CURRENCY,
   DEFAULT_TO_CURRENCY,
@@ -17,7 +17,7 @@ export default class RateService {
       method: 'GET',
     };
 
-    const { statusCode, body } = await request(
+    const { statusCode, body } = await undici.request(
       `${EXCHANGE_RATE_ENDPOINT}?to=${to}&from=${from}&amount=1`,
       config
     );
