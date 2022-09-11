@@ -1,5 +1,3 @@
-import DatabaseService from './DatabaseService.js';
-import RateService from './RateService.js';
 import nodemailer from 'nodemailer';
 import {
   SMTP_HOST,
@@ -10,8 +8,8 @@ import {
 } from '../constants/sendEmails.js';
 
 export default class SendService {
-  #rateService = new RateService();
-  #databaseService = new DatabaseService();
+  #rateService;
+  #databaseService;
 
   #transporter = nodemailer.createTransport({
     host: SMTP_HOST,
@@ -22,6 +20,11 @@ export default class SendService {
       pass: SMTP_PASSWORD,
     },
   });
+
+  constructor(rateService, databaseService) {
+    this.#databaseService = databaseService;
+    this.#rateService = rateService;
+  }
 
   async sendEmails() {
     const notSent = [];
