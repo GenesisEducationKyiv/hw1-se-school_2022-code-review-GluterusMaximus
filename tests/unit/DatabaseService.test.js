@@ -2,6 +2,7 @@ import { jest } from '@jest/globals';
 import fsp from 'fs/promises';
 import fs from 'fs';
 import DatabaseService from '../../src/services/DatabaseService';
+import path from 'path';
 jest.mock('fs/promises');
 jest.mock('fs');
 const databaseService = new DatabaseService();
@@ -16,7 +17,9 @@ describe('Database subscription', () => {
           JSON.stringify(['example1@gmail.com', 'example2@gmail.com'])
         )
       );
-    jest.spyOn(fsp, 'writeFile');
+    jest
+      .spyOn(fsp, 'writeFile')
+      .mockImplementation(() => Promise.resolve(undefined));
 
     await databaseService.subscribe('test@test.com');
 
@@ -47,8 +50,14 @@ describe('Database subscription', () => {
 
   it('should create database files/folder if none exist', async () => {
     fs.existsSync = jest.fn().mockReturnValue(false);
-    jest.spyOn(fsp, 'mkdir');
-    jest.spyOn(fsp, 'writeFile');
+    jest
+      .spyOn(fsp, 'mkdir')
+      .mockImplementation(() =>
+        Promise.resolve(path.resolve(process.cwd(), './data'))
+      );
+    jest
+      .spyOn(fsp, 'writeFile')
+      .mockImplementation(() => Promise.resolve(undefined));
 
     await databaseService.subscribe('first@test.com');
 
