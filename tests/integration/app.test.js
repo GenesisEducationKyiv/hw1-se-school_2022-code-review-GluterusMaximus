@@ -21,9 +21,8 @@ afterAll(() => {
 });
 
 describe('GET /rate', () => {
+  jest.setTimeout(15000);
   it('should return the current rate', async () => {
-    jest.setTimeout(15000);
-
     const res = await request(app).get('/rate');
 
     expect(res.statusCode).toBe(200);
