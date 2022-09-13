@@ -1,0 +1,8 @@
+{
+  "verbose": true,
+  "testEnvironment": "jest-environment-node",
+  "transform": {},
+  "coverageDirectory": "coverage",
+  "collectCoverage": true,
+  "setupFilesAfterEnv": ["jest-chain"]
+}
