@@ -5,10 +5,13 @@ import multer from 'multer';
 import RateService from '../services/RateService.js';
 import DatabaseService from '../services/DatabaseService.js';
 import SendService from '../services/SendService.js';
+import { EMAILS_FILENAME, STORAGE_PATH } from '../constants/database.js';
 
-const sendService = new SendService(new RateService(), new DatabaseService());
-const rateController = new RateController(new RateService());
-const emailController = new EmailController(sendService, new DatabaseService());
+const databaseService = new DatabaseService(STORAGE_PATH, EMAILS_FILENAME);
+const rateService = new RateService();
+const sendService = new SendService(rateService, databaseService);
+const rateController = new RateController(rateService);
+const emailController = new EmailController(sendService, databaseService);
 
 const router = express.Router();
 
