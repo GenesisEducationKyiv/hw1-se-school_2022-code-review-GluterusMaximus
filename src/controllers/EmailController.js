@@ -1,7 +1,7 @@
 import ApiError from '../errors/ApiError.js';
 import { validateEmail } from '../utils/validators.js';
 
-export default class SubscriptionController {
+export default class EmailController {
   #sendService;
   #databaseService;
 

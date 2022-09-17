@@ -8,7 +8,7 @@ interface DatabaseService {
   subscribe(email: string): Promise<void>;
 }
 
-export default class SubscriptionController {
+export default class EmailController {
   #sendService: SendService;
   #databaseService: DatabaseService;
 
