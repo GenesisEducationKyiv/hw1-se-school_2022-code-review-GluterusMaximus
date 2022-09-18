@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals';
 import fsp from 'fs/promises';
 import fs from 'fs';
-import DatabaseService from '../../src/services/DatabaseService';
+import DatabaseService from '../../src/services/EmailService';
 import path from 'path';
 jest.mock('fs/promises');
 jest.mock('fs');
