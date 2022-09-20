@@ -7,11 +7,21 @@ import EmailService from '../services/EmailService.js';
 import EmailRepository from '../repositories/EmailRepository.js';
 import SendService from '../services/SendService.js';
 import { EMAILS_FILENAME, STORAGE_PATH } from '../constants/database.js';
+import {
+  MAIN_RATE_PROVIDER_CREATOR,
+  SECONDARY_RATE_PROVIDER_CREATORS,
+} from '../constants/rates.js';
+import setupResponsibilityChain from './setupResponsibilityChain.js';
+
+const rateProvider = setupResponsibilityChain(
+  MAIN_RATE_PROVIDER_CREATOR,
+  SECONDARY_RATE_PROVIDER_CREATORS
+);
 
 const emailRepository = new EmailRepository(STORAGE_PATH, EMAILS_FILENAME);
 
 const emailService = new EmailService(emailRepository);
-const rateService = new RateService();
+const rateService = new RateService(rateProvider);
 const sendService = new SendService(rateService, emailService);
 
 const rateController = new RateController(rateService);
