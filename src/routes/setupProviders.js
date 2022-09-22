@@ -1,11 +1,15 @@
 import ResponsibilityChainCreator from '../decorators/ResponsibilityChainCreator.js';
 import { logger } from './initLogger.js';
 import LoggerCreator from '../decorators/LoggerCreator.js';
+import CachedCreator from '../proxies/CachedCreator.js';
+import NodeCache from 'node-cache';
 
-const wrapDecorators = (creator, logger) =>
+export const wrapDecorators = (creator, logger) =>
   new ResponsibilityChainCreator(new LoggerCreator(creator, logger));
 
-const setupResponsibilityChain = (MainCreator, SecondaryCreators) => {
+export const cacheCreator = (creator) => new CachedCreator(creator, NodeCache);
+
+export const setupResponsibilityChain = (MainCreator, SecondaryCreators) => {
   const mainCreator = wrapDecorators(new MainCreator(), logger);
   let prev = mainCreator;
 
@@ -18,7 +22,5 @@ const setupResponsibilityChain = (MainCreator, SecondaryCreators) => {
   }
 
   prev.setNext(null);
-  return mainCreator;
+  return cacheCreator(mainCreator);
 };
-
-export default setupResponsibilityChain;

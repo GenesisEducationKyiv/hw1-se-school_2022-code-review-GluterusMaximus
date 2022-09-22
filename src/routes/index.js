@@ -11,7 +11,7 @@ import {
   MAIN_RATE_PROVIDER_CREATOR,
   SECONDARY_RATE_PROVIDER_CREATORS,
 } from '../constants/rates.js';
-import setupResponsibilityChain from './setupResponsibilityChain.js';
+import { setupResponsibilityChain } from './setupProviders.js';
 
 const rateProvider = setupResponsibilityChain(
   MAIN_RATE_PROVIDER_CREATOR,
