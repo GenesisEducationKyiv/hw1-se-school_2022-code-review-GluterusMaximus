@@ -1,4 +1,3 @@
-import NodeCache from 'node-cache';
 import { CACHE_TTL_SECONDS } from '../constants/rates.js';
 
 export class CachedProvider {

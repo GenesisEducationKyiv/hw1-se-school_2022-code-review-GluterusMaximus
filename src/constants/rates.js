@@ -33,4 +33,6 @@ export const SECONDARY_RATE_PROVIDER_CREATORS = [
   BinanceCreator,
 ];
 
-export const CACHE_TTL_SECONDS = Number(process.env.CACHE_TTL_SECONDS ?? 10);
+export const CACHE_TTL_SECONDS = Number(
+  process.env.CACHE_TTL_SECONDS ?? 5 * 60
+);
