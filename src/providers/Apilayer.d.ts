@@ -3,5 +3,7 @@ interface ApilayerProvider {
 }
 
 export default class ApilayerCreator {
+  name: string;
+
   createProvider(): ApilayerProvider;
 }

@@ -26,6 +26,8 @@ class BinanceProvider {
 }
 
 export default class BinanceCreator {
+  name = 'Binance';
+
   createProvider() {
     return new BinanceProvider();
   }

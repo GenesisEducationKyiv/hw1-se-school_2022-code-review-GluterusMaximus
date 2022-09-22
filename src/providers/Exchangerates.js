@@ -28,6 +28,8 @@ class ExchangeratesProvider {
 }
 
 export default class ExchangeratesCreator {
+  name = 'Exchangerates';
+
   createProvider() {
     return new ExchangeratesProvider();
   }

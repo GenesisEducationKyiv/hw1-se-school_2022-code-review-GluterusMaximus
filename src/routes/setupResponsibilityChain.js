@@ -1,13 +1,18 @@
 import ResponsibilityChainCreator from '../decorators/ResponsibilityChainCreator.js';
+import { logger } from './initLogger.js';
+import LoggerCreator from '../decorators/LoggerCreator.js';
+
+const wrapDecorators = (creator, logger) =>
+  new ResponsibilityChainCreator(new LoggerCreator(creator, logger));
 
 const setupResponsibilityChain = (MainCreator, SecondaryCreators) => {
-  const mainCreator = new ResponsibilityChainCreator(new MainCreator());
+  const mainCreator = wrapDecorators(new MainCreator(), logger);
   let prev = mainCreator;
 
   for (const Creator of SecondaryCreators) {
     if (Creator === MainCreator) continue;
 
-    const creator = new ResponsibilityChainCreator(new Creator());
+    const creator = wrapDecorators(new Creator(), logger);
     prev.setNext(creator);
     prev = creator;
   }

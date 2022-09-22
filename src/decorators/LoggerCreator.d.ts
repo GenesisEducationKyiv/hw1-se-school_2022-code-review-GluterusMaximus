@@ -1,3 +1,7 @@
+interface Logger {
+  info(message: string): Logger;
+}
+
 interface Provider {
   getRate(to: string, from: string): Promise<number>;
 }
@@ -7,18 +11,17 @@ interface ProviderCreator {
   createProvider(): Provider;
 }
 
-export class ResponsibilityChainProvider implements Provider {
+export class LoggerProvider implements Provider {
   #provider: Provider;
-  #nextProvider: Provider | null;
+  #logger: Logger;
+  #name: string;
 
-  constructor(provider: Provider, nextProvider: Provider);
+  constructor(provider: Provider, logger: Logger, name: string);
 }
 
 export default class ResponsibilityChainCreator implements ProviderCreator {
   #providerCreator: ProviderCreator;
-  #next: ProviderCreator;
+  #logger: Logger;
 
-  constructor(providerCreator: ProviderCreator);
-
-  setNext(providerCreator: ProviderCreator): void;
+  constructor(providerCreator: ProviderCreator, logger: Logger);
 }

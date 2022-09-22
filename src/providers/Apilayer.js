@@ -32,6 +32,8 @@ class ApilayerProvider {
 }
 
 export default class ApilayerCreator {
+  name = 'Apilayer';
+
   createProvider() {
     return new ApilayerProvider();
   }

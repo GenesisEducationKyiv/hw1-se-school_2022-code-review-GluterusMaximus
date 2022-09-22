@@ -3,5 +3,7 @@ interface BinanceProvider {
 }
 
 export default class BinanceCreator {
+  name: string;
+
   createProvider(): BinanceProvider;
 }

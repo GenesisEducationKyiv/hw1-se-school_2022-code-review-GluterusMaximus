@@ -3,5 +3,7 @@ interface CoinbaseProvider {
 }
 
 export default class CoinbaseCreator {
+  name: string;
+
   createProvider(): CoinbaseProvider;
 }

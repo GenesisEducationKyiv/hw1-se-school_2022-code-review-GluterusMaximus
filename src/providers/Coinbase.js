@@ -31,6 +31,8 @@ class CoinbaseProvider {
 }
 
 export default class CoinbaseCreator {
+  name = 'Coinbase';
+
   createProvider() {
     return new CoinbaseProvider();
   }

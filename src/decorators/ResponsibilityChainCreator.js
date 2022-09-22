@@ -1,4 +1,4 @@
-class ResponsibilityChainProvider {
+export class ResponsibilityChainProvider {
   #provider;
   #nextProvider;
 
@@ -23,6 +23,7 @@ export default class ResponsibilityChainCreator {
 
   constructor(providerCreator) {
     this.#providerCreator = providerCreator;
+    this.name = providerCreator.name;
   }
 
   createProvider() {

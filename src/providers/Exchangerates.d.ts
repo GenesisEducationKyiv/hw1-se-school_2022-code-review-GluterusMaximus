@@ -3,5 +3,7 @@ interface ExchangeratesProvider {
 }
 
 export default class ExchangeratesCreator {
+  name: string;
+
   createProvider(): ExchangeratesProvider;
 }
