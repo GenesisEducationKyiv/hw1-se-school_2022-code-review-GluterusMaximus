@@ -1,11 +1,14 @@
 import ApiError from '../errors/ApiError.js';
-import DatabaseService from '../services/DatabaseService.js';
-import SendService from '../services/SendService.js';
 import { validateEmail } from '../utils/validators.js';
 
-class SubscriptionController {
-  #sendService = new SendService();
-  #databaseService = new DatabaseService();
+export default class EmailController {
+  #sendService;
+  #databaseService;
+
+  constructor(sendService, databaseService) {
+    this.#sendService = sendService;
+    this.#databaseService = databaseService;
+  }
 
   async subscribe(req, res, next) {
     try {
@@ -30,5 +33,3 @@ class SubscriptionController {
     }
   }
 }
-
-export default new SubscriptionController();

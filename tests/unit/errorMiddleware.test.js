@@ -9,7 +9,7 @@ describe('Error middleware tests', () => {
     const mockRequest = { body: 'Some data' };
     const mockResponse = {
       status: jest.fn(() => mockResponse),
-      end: jest.fn(() => mockResponse),
+      json: jest.fn(() => mockResponse),
     };
 
     errorMiddleware(error, mockRequest, mockResponse, jest.fn());
@@ -23,7 +23,7 @@ describe('Error middleware tests', () => {
     const mockRequest = { body: 'Some other data' };
     const mockResponse = {
       status: jest.fn(() => mockResponse),
-      end: jest.fn(() => mockResponse),
+      json: jest.fn(() => mockResponse),
     };
 
     errorMiddleware(error, mockRequest, mockResponse, jest.fn());

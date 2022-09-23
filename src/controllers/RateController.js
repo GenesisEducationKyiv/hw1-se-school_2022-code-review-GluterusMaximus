@@ -1,7 +1,9 @@
-import RateService from '../services/RateService.js';
+export default class RateController {
+  #rateService;
 
-class RateController {
-  #rateService = new RateService();
+  constructor(rateService) {
+    this.#rateService = rateService;
+  }
 
   async getRate(_req, res, next) {
     try {
@@ -12,5 +14,3 @@ class RateController {
     }
   }
 }
-
-export default new RateController();

@@ -5,7 +5,10 @@ import DatabaseService from '../../src/services/DatabaseService';
 import path from 'path';
 jest.mock('fs/promises');
 jest.mock('fs');
-const databaseService = new DatabaseService();
+const databaseService = new DatabaseService(
+  path.resolve('./test-data'),
+  'emails.json'
+);
 
 describe('Database subscription', () => {
   it('should subscribe an email with no errors', async () => {

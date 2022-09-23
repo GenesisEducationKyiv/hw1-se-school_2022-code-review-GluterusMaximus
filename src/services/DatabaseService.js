@@ -7,10 +7,9 @@ export default class DatabaseService {
   #storagePath;
   #emailsPath;
 
-  constructor() {
-    const __dirname = path.resolve();
-    this.#storagePath = path.resolve(__dirname, './data');
-    this.#emailsPath = path.resolve(this.#storagePath, 'emails.json');
+  constructor(storagePath, emailsFilename) {
+    this.#storagePath = storagePath;
+    this.#emailsPath = path.resolve(storagePath, emailsFilename);
   }
 
   async subscribe(email) {
