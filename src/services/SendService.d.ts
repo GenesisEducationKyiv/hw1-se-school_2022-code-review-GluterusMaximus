@@ -9,8 +9,13 @@ interface DatabaseService {
   getEmails(): Promise<string[]>;
 }
 
+interface PresenterResponse {
+  payload: string;
+  contentType: string;
+}
+
 interface Presenter {
-  presentMailingResult(notSent: string[]): string;
+  presentMailingResult(notSent: string[]): PresenterResponse;
 }
 
 export default class SendService {

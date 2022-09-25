@@ -6,8 +6,13 @@ interface ProviderCreator {
   createProvider(): RateProvider;
 }
 
+interface PresenterResponse {
+  payload: string;
+  contentType: string;
+}
+
 interface Presenter {
-  presentRate(rate: number): string;
+  presentRate(rate: number): PresenterResponse;
 }
 
 export default class RateService {
