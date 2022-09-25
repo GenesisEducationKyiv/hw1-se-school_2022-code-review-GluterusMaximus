@@ -5,14 +5,18 @@ import {
 
 export default class RateService {
   #providerCreator;
+  #presenter;
 
-  constructor(providerCreator) {
+  constructor(providerCreator, presenter) {
     this.#providerCreator = providerCreator;
+    this.#presenter = presenter;
   }
 
   async getRate(to = DEFAULT_TO_CURRENCY, from = DEFAULT_FROM_CURRENCY) {
     const rate = await this.#providerCreator.createProvider().getRate(to, from);
 
-    return Math.round(rate);
+    const roundedRate = Math.round(rate);
+
+    return this.#presenter.presentRate(roundedRate);
   }
 }

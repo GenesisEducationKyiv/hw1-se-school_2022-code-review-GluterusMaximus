@@ -12,17 +12,21 @@ import {
   SECONDARY_RATE_PROVIDER_CREATORS,
 } from '../constants/rates.js';
 import { setupResponsibilityChain } from './setupProviders.js';
+import JsonPresenter from '../presenters/JsonPresenter.js';
+import XmlPresenter from '../presenters/XmlPresenter.js';
 
 const rateProvider = setupResponsibilityChain(
   MAIN_RATE_PROVIDER_CREATOR,
   SECONDARY_RATE_PROVIDER_CREATORS
 );
 
+const jsonPresenter = new JsonPresenter();
+
 const emailRepository = new EmailRepository(STORAGE_PATH, EMAILS_FILENAME);
 
 const emailService = new EmailService(emailRepository);
-const rateService = new RateService(rateProvider);
-const sendService = new SendService(rateService, emailService);
+const rateService = new RateService(rateProvider, jsonPresenter);
+const sendService = new SendService(rateService, emailService, jsonPresenter);
 
 const rateController = new RateController(rateService);
 const emailController = new EmailController(sendService, emailService);

@@ -1,18 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
-
-interface SendService {
-  sendEmails(): Promise<string[]>;
-}
-
-interface DatabaseService {
-  subscribe(email: string): Promise<void>;
-}
+import EmailService from '../services/EmailService';
+import SendService from '../services/SendService';
 
 export default class EmailController {
   #sendService: SendService;
-  #databaseService: DatabaseService;
+  #databaseService: EmailService;
 
-  constructor(sendService: SendService, databaseService: DatabaseService);
+  constructor(sendService: SendService, databaseService: EmailService);
 
   subscribe(req: Request, res: Response, next: NextFunction): Promise<void>;
   sendEmails(req: Request, res: Response, next: NextFunction): Promise<void>;
