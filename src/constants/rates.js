@@ -6,6 +6,8 @@ import ExchangeratesCreator from '../providers/Exchangerates.js';
 export const DEFAULT_TO_CURRENCY = process.env.DEFAULT_TO_CURRENCY ?? 'UAH';
 export const DEFAULT_FROM_CURRENCY = process.env.DEFAULT_FROM_CURRENCY ?? 'BTC';
 
+export const RATE_PRECISION = Number(process.env.RATE_PRECISION ?? 5);
+
 export const APILAYER_APIKEY =
   process.env.APILAYER_APIKEY ?? 'd6ItBPKVQ5SOSQidukDUyhAPUzn9xOZJ';
 export const APILAYER_ENDPOINT =

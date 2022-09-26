@@ -1,9 +1,11 @@
 import {
   DEFAULT_FROM_CURRENCY,
   DEFAULT_TO_CURRENCY,
+  RATE_PRECISION,
 } from '../constants/rates.js';
 
 export default class RateService {
+  ratePrecision = RATE_PRECISION;
   #providerCreator;
   #presenter;
 
@@ -16,7 +18,12 @@ export default class RateService {
     const rate = await this.#providerCreator.createProvider().getRate(to, from);
 
     const roundedRate = Math.round(rate);
+    const roundedLength = roundedRate.toString().length;
+    const finalRate =
+      roundedLength >= this.ratePrecision
+        ? roundedRate
+        : parseFloat(rate.toFixed(this.ratePrecision - roundedLength));
 
-    return this.#presenter.presentRate(roundedRate);
+    return this.#presenter.presentRate(finalRate);
   }
 }
