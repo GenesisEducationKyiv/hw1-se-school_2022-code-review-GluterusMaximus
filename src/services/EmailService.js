@@ -9,7 +9,7 @@ export default class EmailService {
 
   async subscribe(email) {
     if (await this.#emailRepository.includes(email))
-      throw new ApiError(409, 'Email already subscribed');
+      throw ApiError.conflict('Email already subscribed');
 
     await this.#emailRepository.push(email);
   }
