@@ -24,9 +24,9 @@ export const BINANCE_ENDPOINT =
   process.env.BINANCE_ENDPOINT ?? 'https://api.binance.com/api/v3/ticker/price';
 
 export const MAIN_RATE_PROVIDER_CREATOR =
-  process.env.CRYPTO_CURRENCY_PROVIDER === 'apilayer'
-    ? ApilayerCreator
-    : BinanceCreator;
+  process.env.CRYPTO_CURRENCY_PROVIDER === 'binance'
+    ? BinanceCreator
+    : ApilayerCreator;
 
 export const SECONDARY_RATE_PROVIDER_CREATORS = [
   ApilayerCreator,

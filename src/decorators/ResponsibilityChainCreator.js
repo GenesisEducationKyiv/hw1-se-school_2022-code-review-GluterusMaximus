@@ -1,25 +1,25 @@
 export class ResponsibilityChainProvider {
   #provider;
-  #nextProvider;
+  #nextCreator;
 
-  constructor(provider, nextProvider) {
+  constructor(provider, nextCreator) {
     this.#provider = provider;
-    this.#nextProvider = nextProvider;
+    this.#nextCreator = nextCreator;
   }
 
   async getRate(to, from) {
     try {
       return await this.#provider.getRate(to, from);
     } catch (error) {
-      if (!this.#nextProvider) throw error;
-      return this.#nextProvider.getRate(to, from);
+      if (!this.#nextCreator) throw error;
+      return this.#nextCreator.createProvider().getRate(to, from);
     }
   }
 }
 
 export default class ResponsibilityChainCreator {
   #providerCreator;
-  #next;
+  initNextCreator = null;
 
   constructor(providerCreator) {
     this.#providerCreator = providerCreator;
@@ -28,13 +28,7 @@ export default class ResponsibilityChainCreator {
 
   createProvider() {
     const provider = this.#providerCreator.createProvider();
-    return new ResponsibilityChainProvider(
-      provider,
-      this.#next?.createProvider() ?? null
-    );
-  }
-
-  setNext(providerCreator) {
-    this.#next = providerCreator;
+    const nextCreator = this.initNextCreator();
+    return new ResponsibilityChainProvider(provider, nextCreator);
   }
 }

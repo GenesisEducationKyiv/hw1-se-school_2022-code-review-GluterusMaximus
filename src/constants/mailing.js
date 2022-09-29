@@ -4,6 +4,5 @@ export const SMTP_SECURE =
   process.env.SMTP_SECURE === undefined
     ? false
     : process.env.SMTP_SECURE !== 'false';
-export const SMTP_USER =
-  process.env.SMTP_USER ?? 'wyei25evlarf72js@ethereal.email';
-export const SMTP_PASSWORD = process.env.SMTP_PASSWORD ?? '76PxDXYYpvJwafvGPJ';
+export const SMTP_USER = process.env.SMTP_USER ?? 'dortha52@ethereal.email';
+export const SMTP_PASSWORD = process.env.SMTP_PASSWORD ?? 'wvbEjmw8EvfXR4GCbP';

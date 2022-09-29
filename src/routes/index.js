@@ -13,7 +13,6 @@ import {
 } from '../constants/rates.js';
 import { setupResponsibilityChain } from './setupProviders.js';
 import JsonPresenter from '../presenters/JsonPresenter.js';
-import XmlPresenter from '../presenters/XmlPresenter.js';
 
 const rateProvider = setupResponsibilityChain(
   MAIN_RATE_PROVIDER_CREATOR,
