@@ -5,7 +5,7 @@ import {
   SMTP_PORT,
   SMTP_SECURE,
   SMTP_USER,
-} from '../constants/sendEmails.js';
+} from '../constants/mailing.js';
 
 export default class SendService {
   #rateService;

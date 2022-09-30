@@ -108,3 +108,6 @@ data/
 
 # Coverage folder
 coverage/
+
+# Logs folder
+logs/

@@ -25,7 +25,7 @@
     "new-cap": [
       "error",
       {
-        "capIsNewExceptions": ["Router"]
+        "capIsNewExceptions": ["Router", "File"]
       }
     ]
   }
