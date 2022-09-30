@@ -25,7 +25,11 @@ const emailRepository = new EmailRepository(STORAGE_PATH, EMAILS_FILENAME);
 
 const emailService = new EmailService(emailRepository);
 const rateService = new RateService(rateProvider, jsonPresenter);
-const sendService = new SendService(rateService, emailService, jsonPresenter);
+const sendService = new SendService(
+  rateService,
+  emailRepository,
+  jsonPresenter
+);
 
 const rateController = new RateController(rateService);
 const emailController = new EmailController(sendService, emailService);

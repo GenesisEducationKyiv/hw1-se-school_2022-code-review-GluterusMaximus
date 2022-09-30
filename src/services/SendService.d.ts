@@ -5,8 +5,8 @@ interface RateService {
   getRate(): Promise<number>;
 }
 
-interface DatabaseService {
-  getEmails(): Promise<string[]>;
+interface EmailRepository {
+  getAll(): Promise<string[]>;
 }
 
 interface PresenterResponse {
@@ -20,13 +20,13 @@ interface Presenter {
 
 export default class SendService {
   #rateService: RateService;
-  #databaseService: DatabaseService;
+  #emailRepository: EmailRepository;
   #presenter: Presenter;
   #transporter: Transporter<SMTPTransport.SentMessageInfo>;
 
   constructor(
     rateService: RateService,
-    databaseService: DatabaseService,
+    emailRepository: EmailRepository,
     presenter: Presenter
   );
 
