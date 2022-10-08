@@ -1,8 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-
-interface RateService {
-  getRate(to?: string, from?: string): Promise<number>;
-}
+import RateService from '../services/RateService';
 
 export default class RateControllerd {
   #rateService: RateService;

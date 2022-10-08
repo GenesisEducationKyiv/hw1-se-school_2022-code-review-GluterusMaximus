@@ -6,10 +6,20 @@ interface ProviderCreator {
   createProvider(): RateProvider;
 }
 
-export default class RateService {
-  #providerCreator;
+interface PresenterResponse {
+  payload: string;
+  contentType: string;
+}
 
-  constructor(providerCreator: ProviderCreator);
+interface Presenter {
+  presentRate(rate: number): PresenterResponse;
+}
+
+export default class RateService {
+  #providerCreator: ProviderCreator;
+  #presenter: Presenter;
+
+  constructor(providerCreator: ProviderCreator, presenter: Presenter);
 
   getRate(to?: string, from?: string): Promise<number>;
 }

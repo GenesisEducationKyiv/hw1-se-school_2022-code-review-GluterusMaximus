@@ -26,8 +26,9 @@ export default class EmailController {
 
   async sendEmails(_req, res, next) {
     try {
-      const notSent = await this.#sendService.sendEmails();
-      res.status(200).json({ notSent });
+      const { payload, contentType } = await this.#sendService.sendEmails();
+      res.set('Content-Type', contentType);
+      res.status(200).send(payload);
     } catch (error) {
       next(error);
     }

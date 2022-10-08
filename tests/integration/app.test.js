@@ -1,16 +1,21 @@
 import request from 'supertest';
 import app from '../../src/app.js';
 import nodemailer from 'nodemailer';
+import { existsSync } from 'fs';
 import fs from 'fs/promises';
 import { jest } from '@jest/globals';
 import undici from 'undici';
 
 const OLD_ENV = process.env;
+const STORAGE_PATH = './data';
 const DATA_PATH = './data/emails.json';
 let OLD_DATA;
 
 beforeAll(async () => {
   try {
+    if (!existsSync(STORAGE_PATH)) {
+      await fs.mkdir(STORAGE_PATH, { recursive: true });
+    }
     OLD_DATA = await fs.readFile(DATA_PATH);
   } catch (error) {
     OLD_DATA = '[]';

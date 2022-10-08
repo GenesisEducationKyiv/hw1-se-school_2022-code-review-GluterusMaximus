@@ -7,8 +7,9 @@ export default class RateController {
 
   async getRate(_req, res, next) {
     try {
-      const rate = await this.#rateService.getRate();
-      res.status(200).json(rate);
+      const { payload, contentType } = await this.#rateService.getRate();
+      res.set('Content-Type', contentType);
+      res.status(200).send(payload);
     } catch (error) {
       next(error);
     }

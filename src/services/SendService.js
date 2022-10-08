@@ -10,6 +10,7 @@ import {
 export default class SendService {
   #rateService;
   #databaseService;
+  #presenter;
 
   #transporter = nodemailer.createTransport({
     host: SMTP_HOST,
@@ -21,9 +22,10 @@ export default class SendService {
     },
   });
 
-  constructor(rateService, databaseService) {
+  constructor(rateService, databaseService, presenter) {
     this.#databaseService = databaseService;
     this.#rateService = rateService;
+    this.#presenter = presenter;
   }
 
   async sendEmails() {
@@ -46,6 +48,6 @@ export default class SendService {
       }
     }
 
-    return notSent;
+    return this.#presenter.presentMailingResult(notSent);
   }
 }

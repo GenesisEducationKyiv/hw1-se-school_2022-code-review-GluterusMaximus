@@ -1,6 +1,7 @@
 import fsp from 'fs/promises';
 import fs from 'fs';
 import path from 'path';
+import ApiError from '../errors/ApiError.js';
 
 export default class EmailRepository {
   #storagePath;
@@ -31,7 +32,8 @@ export default class EmailRepository {
   }
 
   async getAll() {
-    if (!fs.existsSync(this.#emailsPath)) return [];
+    if (!fs.existsSync(this.#emailsPath))
+      throw ApiError.internal('No database');
 
     return JSON.parse(await fsp.readFile(this.#emailsPath));
   }
