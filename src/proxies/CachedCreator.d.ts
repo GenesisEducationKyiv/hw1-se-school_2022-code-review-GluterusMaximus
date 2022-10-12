@@ -28,4 +28,6 @@ export default class CachedCreator implements ProviderCreator {
   #providerCreator: ProviderCreator;
 
   constructor(providerCreator: ProviderCreator, Cache: CacheClass);
+
+  createProvider(): Provider;
 }
