@@ -13,6 +13,7 @@ import {
 } from '../constants/rates.js';
 import { setupResponsibilityChain } from './setupProviders.js';
 import JsonPresenter from '../presenters/JsonPresenter.js';
+import { RateFacade } from '../facades/RateFacade.js';
 
 const rateProvider = setupResponsibilityChain(
   MAIN_RATE_PROVIDER_CREATOR,
@@ -25,7 +26,8 @@ const emailRepository = new EmailRepository(STORAGE_PATH, EMAILS_FILENAME);
 
 const emailService = new EmailService(emailRepository);
 const rateService = new RateService(rateProvider, jsonPresenter);
-const sendService = new SendService(rateService, emailService, jsonPresenter);
+const rateFacade = new RateFacade(rateService);
+const sendService = new SendService(rateFacade, emailRepository, jsonPresenter);
 
 const rateController = new RateController(rateService);
 const emailController = new EmailController(sendService, emailService);

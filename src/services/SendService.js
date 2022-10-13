@@ -9,7 +9,7 @@ import {
 
 export default class SendService {
   #rateService;
-  #databaseService;
+  #emailRepository;
   #presenter;
 
   #transporter = nodemailer.createTransport({
@@ -22,15 +22,15 @@ export default class SendService {
     },
   });
 
-  constructor(rateService, databaseService, presenter) {
-    this.#databaseService = databaseService;
+  constructor(rateService, emailRepository, presenter) {
+    this.#emailRepository = emailRepository;
     this.#rateService = rateService;
     this.#presenter = presenter;
   }
 
   async sendEmails() {
     const notSent = [];
-    const emails = await this.#databaseService.getEmails();
+    const emails = await this.#emailRepository.getAll();
     const rate = await this.#rateService.getRate();
 
     for (const email of emails) {

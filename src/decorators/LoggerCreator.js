@@ -10,6 +10,7 @@ export class LoggerProvider {
   }
 
   async getRate(to, from) {
+    this.#logger.debug({ to, from });
     const rate = await this.#provider.getRate(to, from);
     this.#logger.info(`${this.#name} returned rate: ${rate}`);
     return rate;

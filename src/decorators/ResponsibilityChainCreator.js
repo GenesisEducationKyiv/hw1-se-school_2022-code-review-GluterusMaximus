@@ -19,7 +19,7 @@ export class ResponsibilityChainProvider {
 
 export default class ResponsibilityChainCreator {
   #providerCreator;
-  initNextCreator = null;
+  initNextCreator = () => null;
 
   constructor(providerCreator) {
     this.#providerCreator = providerCreator;
