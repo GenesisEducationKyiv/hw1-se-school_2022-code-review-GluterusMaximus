@@ -1,5 +1,5 @@
 import ResponsibilityChainCreator from '../decorators/ResponsibilityChainCreator.js';
-import { logger } from './initLogger.js';
+import { logger } from '../logger/initLogger.js';
 import LoggerCreator from '../decorators/LoggerCreator.js';
 import CachedCreator from '../proxies/CachedCreator.js';
 import NodeCache from 'node-cache';
