@@ -1,12 +1,15 @@
 import { NextFunction, Request, Response } from 'express';
-import EmailService from '../services/EmailService';
 import SendService from '../services/SendService';
+
+interface UserSaga {
+  execute(params: any): Promise<void>;
+}
 
 export default class EmailController {
   #sendService: SendService;
-  #databaseService: EmailService;
+  #userSaga: UserSaga;
 
-  constructor(sendService: SendService, databaseService: EmailService);
+  constructor(sendService: SendService, userSaga: UserSaga);
 
   subscribe(req: Request, res: Response, next: NextFunction): Promise<void>;
   unsubscribe(req: Request, res: Response, next: NextFunction): Promise<void>;

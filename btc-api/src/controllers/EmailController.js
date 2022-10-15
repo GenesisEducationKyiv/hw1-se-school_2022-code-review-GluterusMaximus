@@ -3,11 +3,11 @@ import { validateEmail } from '../utils/validators.js';
 
 export default class EmailController {
   #sendService;
-  #databaseService;
+  #userSaga;
 
-  constructor(sendService, databaseService) {
+  constructor(sendService, userSaga) {
     this.#sendService = sendService;
-    this.#databaseService = databaseService;
+    this.#userSaga = userSaga;
   }
 
   async subscribe(req, res, next) {
@@ -17,19 +17,7 @@ export default class EmailController {
       if (!email || !validateEmail(email))
         throw new ApiError(400, 'Invalid email');
 
-      await this.#databaseService.subscribe(email);
-      res.status(200).end();
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async unsubscribe(req, res, next) {
-    try {
-      const { email } = req.body;
-
-      await this.#databaseService.unsubscribe(email);
-
+      await this.#userSaga.execute({ email });
       res.status(200).end();
     } catch (error) {
       next(error);

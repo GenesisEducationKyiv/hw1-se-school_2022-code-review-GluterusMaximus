@@ -14,6 +14,9 @@ import {
 import { setupResponsibilityChain } from './setupProviders.js';
 import JsonPresenter from '../presenters/JsonPresenter.js';
 import { RateFacade } from '../facades/RateFacade.js';
+import UserSaga from '../sagas/UserSaga.js';
+import CustomersFacade from '../facades/CustomersFacade.js';
+import { CUSTOMERS_URL } from '../constants/customers.js';
 
 const rateProvider = setupResponsibilityChain(
   MAIN_RATE_PROVIDER_CREATOR,
@@ -27,10 +30,13 @@ const emailRepository = new EmailRepository(STORAGE_PATH, EMAILS_FILENAME);
 const emailService = new EmailService(emailRepository);
 const rateService = new RateService(rateProvider, jsonPresenter);
 const rateFacade = new RateFacade(rateService);
+const customersFacade = new CustomersFacade(CUSTOMERS_URL);
 const sendService = new SendService(rateFacade, emailRepository, jsonPresenter);
 
+const userSaga = new UserSaga(emailService, customersFacade);
+
 const rateController = new RateController(rateService);
-const emailController = new EmailController(sendService, emailService);
+const emailController = new EmailController(sendService, userSaga);
 
 const router = express.Router();
 
@@ -39,11 +45,6 @@ router.post(
   '/subscribe',
   multer().none(),
   emailController.subscribe.bind(emailController)
-);
-router.post(
-  '/unsubscribe',
-  multer().none(),
-  emailController.unsubscribe.bind(emailController)
 );
 router.post('/sendEmails', emailController.sendEmails.bind(emailController));
 
