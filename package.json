@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
+    "customers": "nodemon customers/index.js",
     "lint": "eslint --no-error-on-unmatched-pattern --ext .jsx --ext .js --ext .ts . --ignore-path .gitignore && prettier --no-error-on-unmatched-pattern --ignore-path .gitignore -c \"**/*.js\" \"**/*.ts\" \"**/*.json\" \"**/*.md\" \"**/*.yml\"",
     "lint-fix": "eslint --no-error-on-unmatched-pattern --ext .jsx --ext .js --ext .ts . --ignore-path .gitignore --fix && prettier --no-error-on-unmatched-pattern --ignore-path .gitignore --write \"**/*.js\" \"**/*.ts\" \"**/*.json\" \"**/*.md\" \"**/*.yml\"",
     "prepare": "husky install",

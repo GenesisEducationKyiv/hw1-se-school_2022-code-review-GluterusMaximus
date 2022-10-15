@@ -37,9 +37,13 @@ export default class EmailRepository {
   }
 
   async includes(email) {
-    const emails = await this.getAll();
+    try {
+      const customers = await this.getAll();
 
-    return emails.includes(email);
+      return customers.includes(email);
+    } catch (error) {
+      return false;
+    }
   }
 
   async getAll() {

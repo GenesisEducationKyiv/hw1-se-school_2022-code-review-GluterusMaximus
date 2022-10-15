@@ -6,8 +6,11 @@ interface EmailRepository {
 }
 
 export default class EmailService {
+  #emailRepository: EmailRepository
+
   constructor(emailRepository: EmailRepository);
 
   subscribe(email: string): Promise<void>;
+  unsubscribe(email: string): Promise<void>;
   getEmails(): Promise<string[]>;
 }
