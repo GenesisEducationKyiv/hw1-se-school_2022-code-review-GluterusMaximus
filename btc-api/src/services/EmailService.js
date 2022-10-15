@@ -14,6 +14,13 @@ export default class EmailService {
     await this.#emailRepository.push(email);
   }
 
+  async unsubscribe(email) {
+    if (!(await this.#emailRepository.includes(email)))
+      throw ApiError.badRequest('Email not subscribed');
+
+    await this.#emailRepository.remove(email);
+  }
+
   async getEmails() {
     return this.#emailRepository.getAll();
   }

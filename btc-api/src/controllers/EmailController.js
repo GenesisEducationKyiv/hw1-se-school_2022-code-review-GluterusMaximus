@@ -24,6 +24,18 @@ export default class EmailController {
     }
   }
 
+  async unsubscribe(req, res, next) {
+    try {
+      const { email } = req.body;
+
+      await this.#databaseService.unsubscribe(email);
+
+      res.status(200).end();
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async sendEmails(_req, res, next) {
     try {
       const { payload, contentType } = await this.#sendService.sendEmails();

@@ -40,6 +40,11 @@ router.post(
   multer().none(),
   emailController.subscribe.bind(emailController)
 );
+router.post(
+  '/unsubscribe',
+  multer().none(),
+  emailController.unsubscribe.bind(emailController)
+);
 router.post('/sendEmails', emailController.sendEmails.bind(emailController));
 
 export default router;

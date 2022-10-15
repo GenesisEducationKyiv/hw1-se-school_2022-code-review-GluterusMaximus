@@ -25,6 +25,17 @@ export default class EmailRepository {
     await fsp.writeFile(this.#emailsPath, JSON.stringify(emails));
   }
 
+  async remove(email) {
+    const emails = await this.getAll();
+
+    const emailIndex = emails.indexOf(email);
+    if (emailIndex === -1) return;
+
+    emails.splice(email, 1);
+
+    await fsp.writeFile(this.#emailsPath, JSON.stringify(emails));
+  }
+
   async includes(email) {
     const emails = await this.getAll();
 

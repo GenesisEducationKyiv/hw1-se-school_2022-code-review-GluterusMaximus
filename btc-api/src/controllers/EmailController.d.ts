@@ -9,5 +9,6 @@ export default class EmailController {
   constructor(sendService: SendService, databaseService: EmailService);
 
   subscribe(req: Request, res: Response, next: NextFunction): Promise<void>;
+  unsubscribe(req: Request, res: Response, next: NextFunction): Promise<void>;
   sendEmails(req: Request, res: Response, next: NextFunction): Promise<void>;
 }
