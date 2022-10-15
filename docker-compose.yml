@@ -12,7 +12,9 @@ services:
     networks:
         - rabbitmq_nodejs
   main:
-    build: .
+    build:
+      context: ./
+      dockerfile: ./btc-api/Dockerfile
     ports:
       - "8080:8080"
     networks:

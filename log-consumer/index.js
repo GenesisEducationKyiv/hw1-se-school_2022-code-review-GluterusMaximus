@@ -1,8 +1,8 @@
 import amqplib from 'amqplib';
-import { RABBITMQ_URL } from '../constants/logger.js';
+import { RABBITMQ_HOST } from './constants/rabbitmq.js';
 
 const queue = 'logs';
-const connection = await amqplib.connect(RABBITMQ_URL);
+const connection = await amqplib.connect(RABBITMQ_HOST);
 const channel = await connection.createChannel();
 
 await channel.assertQueue(queue);
